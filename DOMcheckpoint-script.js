@@ -92,13 +92,19 @@ function deleteAllChildNodes(parent) {
 }
 
 function renderProducers(data) {
+  //get the div for producers
   const producerContainer = document.getElementById('producer_container');
+  //clear the div of any producers
   while (producerContainer.firstChild) {
     producerContainer.removeChild(producerContainer.firstChild);
   }
+  //if we have enough coffee set false to true on unlocked property
   unlockProducers(data.producers, data.coffee);
+  //grab all the unlocked(filtered) producers
   const unlockedProducersArray = getUnlockedProducers(data);
+  //take that array of unlocked producers and...
   unlockedProducersArray.forEach((producer) => {
+    //for each producer we will pass it into a call to make producer div, once we get back that formatted HTML we append it to the producer container
     producerContainer.appendChild(makeProducerDiv(producer));
   });
 }
